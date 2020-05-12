@@ -18,6 +18,20 @@ class GetUPSRates
     private $shipToPostalCode;
     private $shipToCountryCode;
 
+    // ShipFrom Properties
+    private $shipFromName;
+    private $shipFromCity;
+    private $shipFromStateProvinceCode;
+    private $shipFromPostalCode;
+    private $shipFromCountryCode;
+
+    // Service Properties
+    private $serviceCode;
+
+    // Shipment Total Weight Properties
+
+
+    // Package Properties
     private $packageWeight;
     private $packageHeight;
     private $packageWidth;
@@ -85,6 +99,42 @@ class GetUPSRates
     }
 
 
+    // ******* SHIP From *******
+
+    // set ShipFrom Name
+    function setShipFromName($shipFromName) {
+        $this->shipFromName = $shipFromName;
+    }
+
+    // set ShipFrom City
+    function setShipFromCity($shipFromCity) {
+        $this->shipFromCity = $shipFromCity;
+    }
+
+    // set ShipFrom StateProvinceCode
+    function setShipFromStateProvinceCode($shipFromStateProvinceCode) {
+        $this->shipFromStateProvinceCode = $shipFromStateProvinceCode;
+    }
+
+    // set ShipFrom PostalCode
+    function setShipFromPostalCode($shipFromPostalCode) {
+        $this->shipFromPostalCode = $shipFromPostalCode;
+    }
+
+    // set ShipFrom CountryCode
+    function setShipFromCountryCode($shipFromCountryCode) {
+        $this->shipFromCountryCode = $shipFromCountryCode;
+    }
+
+
+
+
+    // ******* SERVICE *******
+    function setServiceCode($serviceCode) {
+        $this->serviceCode = $serviceCode;
+    }
+
+
 
 
 
@@ -123,7 +173,7 @@ class GetUPSRates
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS =>"{\r\n   \"RateRequest\":{\r\n      \"Request\":{\r\n         \"SubVersion\":\"1703\",\r\n         \"TransactionReference\":{\r\n            \"CustomerContext\":\" \"\r\n         }\r\n      },\r\n      \"Shipment\":{\r\n         \"ShipmentRatingOptions\":{\r\n            \"UserLevelDiscountIndicator\":\"TRUE\"\r\n         },\r\n         \"Shipper\":{\r\n            \"Name\":\"$this->shipperName\",\r\n            \"ShipperNumber\":\"$this->shipperNumber\",\r\n            \"Address\":{\r\n               \"City\":\"$this->shipperCity\",\r\n               \"StateProvinceCode\":\"$this->shipperStateProvinceCode\",\r\n               \"PostalCode\":\"$this->shipperPostalCode\",\r\n               \"CountryCode\":\"$this->shipperCountryCode\"\r\n            }\r\n         },\r\n         \"ShipTo\":{\r\n            \"Name\":\"$this->shipToName\",\r\n            \"Address\":{\r\n               \"City\":\"$this->shipToCity\",\r\n               \"StateProvinceCode\":\"$this->shipToStateProvinceCode\",\r\n               \"PostalCode\":\"$this->shipToPostalCode\",\r\n               \"CountryCode\":\"$this->shipToCountryCode\"\r\n            }\r\n         },\r\n         \"ShipFrom\":{\r\n            \"Name\":\"Billy Blanks\",\r\n            \"Address\":{\r\n               \"AddressLine\":\"366 Robin LN SE\",\r\n               \"City\":\"Marietta\",\r\n               \"StateProvinceCode\":\"GA\",\r\n               \"PostalCode\":\"30067\",\r\n               \"CountryCode\":\"US\"\r\n            }\r\n         },\r\n         \"Service\":{\r\n            \"Code\":\"03\",\r\n            \"Description\":\"Ground\"\r\n         },\r\n         \"ShipmentTotalWeight\":{\r\n            \"UnitOfMeasurement\":{\r\n               \"Code\":\"LBS\",\r\n               \"Description\":\"Pounds\"\r\n            },\r\n            \"Weight\":\"10\"\r\n         },\r\n         \"Package\":{\r\n            \"PackagingType\":{\r\n               \"Code\":\"02\",\r\n               \"Description\":\"Package\"\r\n            },\r\n            \"Dimensions\":{\r\n               \"UnitOfMeasurement\":{\r\n                  \"Code\":\"IN\"\r\n               },\r\n               \"Length\":\"$this->packageLength\",\r\n               \"Width\":\"$this->packageWidth\",\r\n               \"Height\":\"$this->packageHeight\"\r\n            },\r\n            \"PackageWeight\":{\r\n               \"UnitOfMeasurement\":{\r\n                  \"Code\":\"LBS\"\r\n               },\r\n               \"Weight\":\"$this->packageWeight\"\r\n            }\r\n         }\r\n      }\r\n   }\r\n}",
+            CURLOPT_POSTFIELDS =>"{\r\n   \"RateRequest\":{\r\n      \"Request\":{\r\n         \"SubVersion\":\"1703\",\r\n         \"TransactionReference\":{\r\n            \"CustomerContext\":\" \"\r\n         }\r\n      },\r\n      \"Shipment\":{\r\n         \"ShipmentRatingOptions\":{\r\n            \"UserLevelDiscountIndicator\":\"TRUE\"\r\n         },\r\n         \"Shipper\":{\r\n            \"Name\":\"$this->shipperName\",\r\n            \"ShipperNumber\":\"$this->shipperNumber\",\r\n            \"Address\":{\r\n               \"City\":\"$this->shipperCity\",\r\n               \"StateProvinceCode\":\"$this->shipperStateProvinceCode\",\r\n               \"PostalCode\":\"$this->shipperPostalCode\",\r\n               \"CountryCode\":\"$this->shipperCountryCode\"\r\n            }\r\n         },\r\n         \"ShipTo\":{\r\n            \"Name\":\"$this->shipToName\",\r\n            \"Address\":{\r\n               \"City\":\"$this->shipToCity\",\r\n               \"StateProvinceCode\":\"$this->shipToStateProvinceCode\",\r\n               \"PostalCode\":\"$this->shipToPostalCode\",\r\n               \"CountryCode\":\"$this->shipToCountryCode\"\r\n            }\r\n         },\r\n         \"ShipFrom\":{\r\n            \"Name\":\"$this->shipFromName\",\r\n            \"Address\":{\r\n               \"AddressLine\":\" \",\r\n               \"City\":\"$this->shipFromCity\",\r\n               \"StateProvinceCode\":\"$this->shipFromStateProvinceCode\",\r\n               \"PostalCode\":\"$this->shipFromPostalCode\",\r\n               \"CountryCode\":\"$this->shipFromCountryCode\"\r\n            }\r\n         },\r\n         \"Service\":{\r\n            \"Code\":\"$this->serviceCode\",\r\n            \"Description\":\"Ground\"\r\n         },\r\n         \"ShipmentTotalWeight\":{\r\n            \"UnitOfMeasurement\":{\r\n               \"Code\":\"LBS\",\r\n               \"Description\":\"Pounds\"\r\n            },\r\n            \"Weight\":\"10\"\r\n         },\r\n         \"Package\":{\r\n            \"PackagingType\":{\r\n               \"Code\":\"02\",\r\n               \"Description\":\"Package\"\r\n            },\r\n            \"Dimensions\":{\r\n               \"UnitOfMeasurement\":{\r\n                  \"Code\":\"IN\"\r\n               },\r\n               \"Length\":\"$this->packageLength\",\r\n               \"Width\":\"$this->packageWidth\",\r\n               \"Height\":\"$this->packageHeight\"\r\n            },\r\n            \"PackageWeight\":{\r\n               \"UnitOfMeasurement\":{\r\n                  \"Code\":\"LBS\"\r\n               },\r\n               \"Weight\":\"$this->packageWeight\"\r\n            }\r\n         }\r\n      }\r\n   }\r\n}",
             CURLOPT_HTTPHEADER => array(
                 "Username: DAN_Kashani",
                 "Password: Shelly12",

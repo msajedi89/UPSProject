@@ -13,11 +13,21 @@ $ups->setShipperPostalCode('30067');
 $ups->setShipperCountryCode('US');
 
 // Provide ShipTo Info
-$ups->setShipToName('Mansoor');
-$ups->setShipToCity('Marietta');
-$ups->setShipToStateProvinceCode('GA');
-$ups->setShipToPostalCode('30067');
+$ups->setShipToName('Sarita Lynn');
+$ups->setShipToCity('San Jose');
+$ups->setShipToStateProvinceCode('CA');
+$ups->setShipToPostalCode('95113');
 $ups->setShipToCountryCode('US');
+
+// Provide ShipFrom Info
+$ups->setShipFromName('Mansoor');
+$ups->setShipFromCity('Marietta');
+$ups->setShipFromStateProvinceCode('GA');
+$ups->setShipFromPostalCode('30067');
+$ups->setShipFromCountryCode('US');
+
+// Provide Service Code
+$ups->setServiceCode('03');
 
 
 // Set Package Info

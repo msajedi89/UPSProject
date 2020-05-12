@@ -16,8 +16,7 @@ curl_setopt_array($curl, array(
         "AccessLicenseNumber: CD75F2E6A3485C32",
         "Password: Shelly12",
         "Content-Type: application/json",
-        "Username: DAN_Kashani",
-        "Content-Type: application/json"
+        "Username: DAN_Kashani"
     ),
 ));
 
