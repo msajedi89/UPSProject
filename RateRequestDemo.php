@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => "https://onlinetools.ups.com/ship/v1/rating/Rate",
+    CURLOPT_URL => "https://onlinetools.ups.com/ship/v1/rating/Shop",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
