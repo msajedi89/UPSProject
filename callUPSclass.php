@@ -29,6 +29,10 @@ $ups->setShipFromCountryCode('US');
 // Provide Service Code
 $ups->setServiceCode('03');
 
+// Provide Shipment Total Weight
+$ups->setShipmentTotalWeightMeasurementCode('LBS');
+$ups->setShipmentTotalWeight('10');
+
 
 // Set Package Info
 $ups->setPackageHeight('10');
