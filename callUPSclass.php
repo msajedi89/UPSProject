@@ -35,12 +35,26 @@ $ups->setShipmentTotalWeight('10');
 
 
 // Set Package Info
-$ups->setPackageHeight('10');
-$ups->setPackageWidth('8');
-$ups->setPackageLength('7');
+$ups->setPackageTypeCode('02');
+$ups->setPackageDimensionMeasurementCode('IN');
+$ups->setPackageLength('10');
+$ups->setPackageWidth('7');
+$ups->setPackageHeight('5');
+$ups->setPackageWeightMeasurementCode('LBS');
 $ups->setPackageWeight('15');
 
 
+// Send the Request to UPS API
 $result = $ups->processRate();
 
-echo $result;
+$result2 = array();
+$result2 = json_decode($result, true);
+
+echo '<h3>Response Status:</h3>';
+echo $result2['RateResponse']['Response']['ResponseStatus']['Code'];
+
+echo '<h3>Services:</h3>';
+echo '<p>First Service:</p>';
+echo $result2['RateResponse']['RatedShipment'][0]['Service']['Code'];
+echo '<p>Second Service:</p>';
+echo $result2['RateResponse']['RatedShipment'][1]['Service']['Code'];
