@@ -1,5 +1,4 @@
 <?php
-
 include 'GetUPSRates.php';
 
 $ups = new GetUPSRates();
@@ -33,7 +32,6 @@ $ups->setServiceCode('03');
 $ups->setShipmentTotalWeightMeasurementCode('LBS');
 $ups->setShipmentTotalWeight('10');
 
-
 // Set Package Info
 $ups->setPackageTypeCode('02');
 $ups->setPackageDimensionMeasurementCode('IN');
@@ -43,18 +41,25 @@ $ups->setPackageHeight('5');
 $ups->setPackageWeightMeasurementCode('LBS');
 $ups->setPackageWeight('15');
 
-
 // Send the Request to UPS API
-$result = $ups->processRate();
+$result = $ups->ProcessRate();
+//echo $result;
 
-$result2 = array();
-$result2 = json_decode($result, true);
+$resultArray = array();
+$resultArray = json_decode($result, true);
+//echo var_dump($resultArray);
 
 echo '<h3>Response Status:</h3>';
-echo $result2['RateResponse']['Response']['ResponseStatus']['Code'];
+echo $ups->getResponseStatus($resultArray);
+
 
 echo '<h3>Services:</h3>';
-echo '<p>First Service:</p>';
-echo $result2['RateResponse']['RatedShipment'][0]['Service']['Code'];
-echo '<p>Second Service:</p>';
-echo $result2['RateResponse']['RatedShipment'][1]['Service']['Code'];
+$resultServices = $ups->getServices($resultArray);
+$i = 1;
+foreach ($resultServices as $service) {
+    echo '<p>Service '. $i .'</p>';
+    echo 'Code: ' . $service['Service']['Code'] . '  ';
+    echo 'Total Charges: ' . $service['TotalCharges']['MonetaryValue'] . '  ' . $service['TotalCharges']['CurrencyCode'];
+    $i++;
+}
+

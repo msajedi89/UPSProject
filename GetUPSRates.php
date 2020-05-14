@@ -195,7 +195,7 @@ class GetUPSRates
 
 
     // Get the Rates for Package
-    function processRate() {
+    function ProcessRate() {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -222,4 +222,13 @@ class GetUPSRates
         return $response;
     }
 
+    // Get Response Status
+    function getResponseStatus($result) {
+        return $result['RateResponse']['Response']['ResponseStatus']['Code'];
+    }
+
+    // Pull Out Services from Response
+    function getServices($result) {
+        return $result['RateResponse']['RatedShipment'];
+    }
 }
